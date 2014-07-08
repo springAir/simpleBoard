@@ -40,11 +40,6 @@ public class PostRepositoryJdbc implements PostRepository {
         }
     }
 
-    // TODO... 조금더 고민하기.. String으로 반환하는것이 최선임??
-    private String convertToDateTime(java.util.Date date) {
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-        return sdf.format(date);
-    }
 
     @Override
     public Post find(long id) {
@@ -67,7 +62,7 @@ public class PostRepositoryJdbc implements PostRepository {
     }
 
     @Override
-    public long write(final Post post) {
+    public long add(final Post post) {
         final String sql = "INSERT INTO POST(board_Id, title, writer, content, write_date) VALUES(?,?,?,?,?)";
 
         KeyHolder holder = new GeneratedKeyHolder();
@@ -100,5 +95,12 @@ public class PostRepositoryJdbc implements PostRepository {
     public void delete(long id) {
         String sql = "DELETE FROM POST WHERE ID = ?";
         jdbcTemplate.update(sql, id);
+    }
+
+
+    // TODO... 조금더 고민하기.. String으로 반환하는것이 최선임??
+    private String convertToDateTime(java.util.Date date) {
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        return sdf.format(date);
     }
 }

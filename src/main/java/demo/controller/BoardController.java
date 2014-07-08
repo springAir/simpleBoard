@@ -11,12 +11,12 @@ public class BoardController {
 		return "index";
 	}
 	
-	@RequestMapping("/board/")
+	@RequestMapping("/board/{boardName}")
 	public String viewBoard(){
 		return "";
 	}
 
-    @RequestMapping("/board/pages/{pageNumber}")
+    @RequestMapping("/board/{boardName}/pages/{pageNumber}")
     public String viewBoardPage(){
         return "";
     }

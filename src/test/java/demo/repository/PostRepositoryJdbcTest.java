@@ -42,11 +42,11 @@ public class PostRepositoryJdbcTest {
     public void testWriteGetAndCount() throws Exception {
         //처음 count 는 0
         assertThat(postRepositoryJdbc.count(), is(0L));
-        postRepositoryJdbc.write(postFixtureList.get(0));
-        postRepositoryJdbc.write(postFixtureList.get(1));
+        postRepositoryJdbc.add(postFixtureList.get(0));
+        postRepositoryJdbc.add(postFixtureList.get(1));
 
         Post postFromFixture = postFixtureList.get(2);
-        long postFixtureWriteId = postRepositoryJdbc.write(postFromFixture);
+        long postFixtureWriteId = postRepositoryJdbc.add(postFromFixture);
         //count가 3인걸 확인
         assertThat(postRepositoryJdbc.count(), is(3L));
 
@@ -57,9 +57,9 @@ public class PostRepositoryJdbcTest {
 
     @Test
     public void testGetList() throws Exception {
-        postRepositoryJdbc.write(postFixtureList.get(0));
-        postRepositoryJdbc.write(postFixtureList.get(1));
-        postRepositoryJdbc.write(postFixtureList.get(2));
+        postRepositoryJdbc.add(postFixtureList.get(0));
+        postRepositoryJdbc.add(postFixtureList.get(1));
+        postRepositoryJdbc.add(postFixtureList.get(2));
 
         assertThat(postRepositoryJdbc.count(), is(3L));
 
@@ -71,8 +71,8 @@ public class PostRepositoryJdbcTest {
 
     @Test
     public void testUpdate() throws Exception {
-        long post1Id = postRepositoryJdbc.write(postFixtureList.get(0));
-        long post2Id = postRepositoryJdbc.write(postFixtureList.get(1));
+        long post1Id = postRepositoryJdbc.add(postFixtureList.get(0));
+        long post2Id = postRepositoryJdbc.add(postFixtureList.get(1));
 
         Post updatePost = postFixtureList.get(4);
         updatePost.setId(post2Id);
@@ -87,8 +87,8 @@ public class PostRepositoryJdbcTest {
 
     @Test
     public void testDelete() throws Exception {
-        long post1Id = postRepositoryJdbc.write(postFixtureList.get(0));
-        long post2Id = postRepositoryJdbc.write(postFixtureList.get(1));
+        long post1Id = postRepositoryJdbc.add(postFixtureList.get(0));
+        long post2Id = postRepositoryJdbc.add(postFixtureList.get(1));
 
         assertThat(postRepositoryJdbc.count(), is(2L));
 

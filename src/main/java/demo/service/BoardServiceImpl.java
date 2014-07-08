@@ -26,7 +26,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public void write(Post post) {
-        postRepository.write(post);
+        postRepository.add(post);
     }
 
     @Override
