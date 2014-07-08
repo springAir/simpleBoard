@@ -7,10 +7,10 @@ import java.util.Date;
 
 @Data
 @ToString
-public class Board {
+public class Post {
 	private long id;
 	private String title;
 	private String content;
-	private String name;
+	private String writer;
 	private Date writeDate;
 }

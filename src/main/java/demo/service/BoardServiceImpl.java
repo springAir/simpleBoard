@@ -1,7 +1,7 @@
 package demo.service;
 
-import demo.model.Board;
-import demo.repository.BoardRepository;
+import demo.model.Post;
+import demo.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,31 +12,31 @@ import java.util.List;
 public class BoardServiceImpl implements BoardService {
 
     @Autowired
-    BoardRepository boardRepository;
+    PostRepository postRepository;
 
     @Override
-    public Board find(long id) {
-        return boardRepository.find(id);
+    public Post find(long id) {
+        return postRepository.find(id);
     }
 
     @Override
-    public List<Board> findPage() {
-        return boardRepository.findPage();
+    public List<Post> findPage() {
+        return postRepository.findPage();
     }
 
     @Override
-    public void write(Board board) {
-        boardRepository.write(board);
+    public void write(Post post) {
+        postRepository.write(post);
     }
 
     @Override
-    public void modify(Board board) {
-        boardRepository.modify(board);
+    public void modify(Post post) {
+        postRepository.modify(post);
     }
 
     @Override
     public void delete(long id) {
-        boardRepository.delete(id);
+        postRepository.delete(id);
     }
 
 }

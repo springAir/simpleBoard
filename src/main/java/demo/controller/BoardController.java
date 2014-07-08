@@ -15,8 +15,10 @@ public class BoardController {
 	public String viewBoard(){
 		return "";
 	}
-	
-	
-	
-	
+
+    @RequestMapping("/board/pages/{pageNumber}")
+    public String viewBoardPage(){
+        return "";
+    }
+
 }
