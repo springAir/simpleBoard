@@ -1,42 +1,41 @@
 package demo.service;
 
 import demo.model.Post;
+import demo.model.PostContainer;
 import demo.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 
 @Service
-public class BoardServiceImpl implements BoardService {
+public class PostServiceImpl implements PostService {
 
     @Autowired
     PostRepository postRepository;
 
     @Override
-    public Post find(long id) {
+    public Post getPost(int id) {
         return postRepository.find(id);
     }
 
     @Override
-    public List<Post> findPage() {
-        return postRepository.findPage();
+    public PostContainer getPostContainer(String boardKeyName, int page) {
+        return null;
     }
+
 
     @Override
     public void write(Post post) {
-        postRepository.add(post);
+
     }
 
     @Override
     public void modify(Post post) {
-        postRepository.modify(post);
+
     }
 
     @Override
-    public void delete(long id) {
-        postRepository.delete(id);
-    }
+    public void delete(int id) {
 
+    }
 }

@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 @ToString
 public class Post {
-	private long id;
+	private int id;
 	private String title;
 	private String content;
 	private String writer;

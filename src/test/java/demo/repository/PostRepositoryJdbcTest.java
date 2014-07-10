@@ -41,14 +41,14 @@ public class PostRepositoryJdbcTest {
     @Test
     public void testWriteGetAndCount() throws Exception {
         //처음 count 는 0
-        assertThat(postRepositoryJdbc.count(), is(0L));
+        assertThat(postRepositoryJdbc.count(), is(0));
         postRepositoryJdbc.add(postFixtureList.get(0));
         postRepositoryJdbc.add(postFixtureList.get(1));
 
         Post postFromFixture = postFixtureList.get(2);
         long postFixtureWriteId = postRepositoryJdbc.add(postFromFixture);
         //count가 3인걸 확인
-        assertThat(postRepositoryJdbc.count(), is(3L));
+        assertThat(postRepositoryJdbc.count(), is(3));
 
         Post postFromDB = postRepositoryJdbc.find(postFixtureWriteId);
         assertForOnePost(postFromFixture, postFromDB);
@@ -61,7 +61,7 @@ public class PostRepositoryJdbcTest {
         postRepositoryJdbc.add(postFixtureList.get(1));
         postRepositoryJdbc.add(postFixtureList.get(2));
 
-        assertThat(postRepositoryJdbc.count(), is(3L));
+        assertThat(postRepositoryJdbc.count(), is(3));
 
         List<Post> resultPostList = postRepositoryJdbc.findPage();
 
@@ -71,8 +71,8 @@ public class PostRepositoryJdbcTest {
 
     @Test
     public void testUpdate() throws Exception {
-        long post1Id = postRepositoryJdbc.add(postFixtureList.get(0));
-        long post2Id = postRepositoryJdbc.add(postFixtureList.get(1));
+        int post1Id = postRepositoryJdbc.add(postFixtureList.get(0));
+        int post2Id = postRepositoryJdbc.add(postFixtureList.get(1));
 
         Post updatePost = postFixtureList.get(4);
         updatePost.setId(post2Id);
@@ -90,12 +90,12 @@ public class PostRepositoryJdbcTest {
         long post1Id = postRepositoryJdbc.add(postFixtureList.get(0));
         long post2Id = postRepositoryJdbc.add(postFixtureList.get(1));
 
-        assertThat(postRepositoryJdbc.count(), is(2L));
+        assertThat(postRepositoryJdbc.count(), is(2));
 
         postRepositoryJdbc.delete(post1Id);
 
         //삭제후 카운트가 1이 되는지 확인.
-        assertThat(postRepositoryJdbc.count(), is(1L));
+        assertThat(postRepositoryJdbc.count(), is(1));
         //삭제작업이 다른 데이터에 영향을 끼치는지 확인.
         assertForOnePost(postRepositoryJdbc.find(post2Id), postFixtureList.get(1));
     }

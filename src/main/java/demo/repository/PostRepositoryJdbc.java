@@ -29,7 +29,7 @@ public class PostRepositoryJdbc implements PostRepository {
         public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
 
             Post post = new Post();
-            post.setId(rs.getLong("id"));
+            post.setId(rs.getInt("id"));
             post.setTitle(rs.getString("title"));
             post.setWriter(rs.getString("writer"));
             post.setWriteDate(rs.getTimestamp("write_date"));
@@ -56,13 +56,13 @@ public class PostRepositoryJdbc implements PostRepository {
     }
 
     @Override
-    public long count() {
+    public int count() {
         String sql = "SELECT COUNT(*) FROM POST";
-        return jdbcTemplate.queryForObject(sql, Long.class);
+        return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
     @Override
-    public long add(final Post post) {
+    public int add(final Post post) {
         final String sql = "INSERT INTO POST(board_Id, title, writer, content, write_date) VALUES(?,?,?,?,?)";
 
         KeyHolder holder = new GeneratedKeyHolder();
@@ -82,7 +82,7 @@ public class PostRepositoryJdbc implements PostRepository {
             }
         }, holder);
 
-        return holder.getKey().longValue();
+        return holder.getKey().intValue();
     }
 
     @Override

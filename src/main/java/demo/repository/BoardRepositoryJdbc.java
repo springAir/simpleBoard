@@ -19,7 +19,7 @@ public class BoardRepositoryJdbc implements BoardRepository {
     private static final class BoardMapper implements RowMapper<Board> {
         public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
             Board board = new Board();
-            board.setId(rs.getLong("id"));
+            board.setId(rs.getInt("id"));
             board.setKeyName(rs.getString("key_name"));
             board.setName(rs.getString("name"));
             return board;

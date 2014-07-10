@@ -7,8 +7,8 @@ import java.util.List;
 
 @Data
 @ToString
-public class BoardContainer {
+public class PostContainer {
     private List<Post> postList;
-    private long currentPageNumber;
-    private long totalPageNumber;
+    private int totoalPageNumber;
+    private int currentPageNumber;
 }
