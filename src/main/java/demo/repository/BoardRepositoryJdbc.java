@@ -7,9 +7,11 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 
+@Repository
 public class BoardRepositoryJdbc implements BoardRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;

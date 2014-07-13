@@ -97,6 +97,12 @@ public class PostRepositoryJdbc implements PostRepository {
         jdbcTemplate.update(sql, id);
     }
 
+    @Override
+    public void deleteAll(){
+        String sql = "DELETE FROM POST";
+        jdbcTemplate.update(sql);
+    }
+
 
     // TODO... 조금더 고민하기.. String으로 반환하는것이 최선임??
     private String convertToDateTime(java.util.Date date) {

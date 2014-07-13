@@ -11,4 +11,6 @@ public interface PostRepository {
     public int add(Post post);
     public void modify(Post post);
     public void delete(long id);
+
+    void deleteAll();
 }
