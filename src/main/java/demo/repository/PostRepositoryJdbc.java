@@ -1,6 +1,8 @@
 package demo.repository;
 
 import demo.model.Post;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -14,7 +16,7 @@ import java.util.List;
 
 @Repository
 public class PostRepositoryJdbc implements PostRepository {
-
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -49,10 +51,12 @@ public class PostRepositoryJdbc implements PostRepository {
     }
 
     @Override
-    public List<Post> findPage() {
+    public List<Post> findPage(int boardId, int startRow, int endRow) {
+        logger.info("boardId = {}, startRow = {}, endRow = {}", boardId, startRow, endRow);
+
         boolean isContentExist = false;
-        String sql = "SELECT id, title, writer, write_date FROM POST ORDER BY id DESC";
-        return jdbcTemplate.query(sql, new Object[]{}, new PostMapper(isContentExist));
+        String sql = "SELECT id, title, writer, write_date FROM POST WHERE BOARD_ID = ? ORDER BY id DESC LIMIT ?, ?";
+        return jdbcTemplate.query(sql, new Object[]{boardId, startRow, endRow}, new PostMapper(isContentExist));
     }
 
     @Override

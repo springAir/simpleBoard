@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PostRepository {
     public Post find(long id);
-    public List<Post> findPage();
+    public List<Post> findPage(int boardId, int startRow, int endRow);
     public int count();
     public int add(Post post);
     public void modify(Post post);

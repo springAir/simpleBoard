@@ -9,6 +9,7 @@ import java.util.List;
 @ToString
 public class PostContainer {
     private List<Post> postList;
-    private int totoalPageNumber;
+    private String boardName;
+    private int totalPageNumber;
     private int currentPageNumber;
 }

@@ -16,27 +16,43 @@ public class PostController {
 
     @Autowired
     private PostService postService;
-	
-	@RequestMapping("/")
-	public String index(){
-		return "index";
-	}
-	
-	@RequestMapping("/board/{boardName}")
-	public String viewPostPage(@PathVariable String boardName){
-		return "";
-	}
 
-    //TODO URL에 대한 의견 듣기.
-    @RequestMapping("/board/{boardName}/{pageNumber}")
-    public String viewPostPage(@PathVariable String boardName, @PathVariable int pageNumber){
+    @RequestMapping("/")
+    public String index() {
+        return "index";
+    }
+
+    @RequestMapping("/board/{boardName}")
+    public String viewPostPage(@PathVariable String boardName) {
         return "";
     }
 
-    @RequestMapping(value="/post/{postId}", method = RequestMethod.GET)
-    public String viewPost(@PathVariable int postId, Model model){
-        model.addAttribute("post", postService.getPost(postId));
+    @RequestMapping("/board/{boardName}/{pageNumber}")
+    public String viewPostPage(@PathVariable String boardName, @PathVariable int pageNumber, Model model) {
+        model.addAttribute(postService.getPostContainer(boardName, pageNumber));
+        return "postList";
+    }
 
+    @RequestMapping(value = "/post/{postId}", method = RequestMethod.GET)
+    public String viewPost(@PathVariable int postId, Model model) {
+        model.addAttribute("post", postService.getPost(postId));
         return "post";
     }
+
+    @RequestMapping(value = "/post/{postId}", method = RequestMethod.PUT)
+    public String modifyPost(@PathVariable int postId, Model model) {
+        throw new RuntimeException("TODO");
+    }
+
+    @RequestMapping(value = "/post/{postId}", method = RequestMethod.DELETE)
+    public String deletePost(@PathVariable int postId) {
+        throw new RuntimeException("TODO");
+    }
+
+    @RequestMapping(value = "/post/", method = RequestMethod.POST)
+    public String writePost(@PathVariable int postId, Model model) {
+        model.addAttribute("post", postService.getPost(postId));
+        return "post";
+    }
+
 }

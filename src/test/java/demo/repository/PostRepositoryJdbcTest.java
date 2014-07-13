@@ -28,7 +28,7 @@ public class PostRepositoryJdbcTest {
     private List<Post> postFixtureList;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         //시작하기전, 모든 데이터는 삭제한 테스트를 진행한다.
         postRepositoryJdbc.deleteAll();
 
@@ -66,7 +66,7 @@ public class PostRepositoryJdbcTest {
 
         assertThat(postRepositoryJdbc.count(), is(3));
 
-        List<Post> resultPostList = postRepositoryJdbc.findPage();
+        List<Post> resultPostList = postRepositoryJdbc.findPage(0, 0, 100);
 
         //가장 나중에 등록된 게시물이 제일 위에 나와야 함.
         assertForListPost(resultPostList.get(0), postFixtureList.get(2));
@@ -118,7 +118,7 @@ public class PostRepositoryJdbcTest {
     }
 
     //fixture 생성.
-    private Post generatePost(String name, String title, String content, Date writeDate){
+    private Post generatePost(String name, String title, String content, Date writeDate) {
         Post post = new Post();
         post.setTitle(title);
         post.setWriter(name);
