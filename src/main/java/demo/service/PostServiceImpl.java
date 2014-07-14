@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -44,6 +46,9 @@ public class PostServiceImpl implements PostService {
     @Override
     public void write(String boardKeyName, Post post) {
         int boardId = this.getBoardId(boardKeyName);
+        if(post.getWriteDate() == null){
+            post.setWriteDate(new Date());
+        }
         post.setBoardId(boardId);
         postRepository.add(post);
     }

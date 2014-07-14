@@ -25,7 +25,7 @@
     <c:forEach items="${postContainer.postList}" var="post">
         <tr>
             <td>${post.id}</td>
-            <td><a href="/post/${post.id}">${post.title}</a></td>
+            <td><a href="/board/${boardKeyName}/post/${post.id}">${post.title}</a></td>
             <td>${post.writer}</td>
             <td>${post.writeDate}</td>
         </tr>
@@ -36,7 +36,7 @@
     <c:choose>
         <c:when test="${currentPageNumber != 1}">
            <span>
-               <a href="/board/${board.keyName}/${currentPageNumber - 1}">prev</a>
+               <a href="/board/${board.keyName}/page/${currentPageNumber - 1}">prev</a>
            </span>
         </c:when>
     </c:choose>
