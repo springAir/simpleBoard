@@ -32,8 +32,8 @@ public class PostServiceImpl implements PostService {
         int endRow = startRow + DEFAULT_PAGE_SIZE;
 
         PostContainer postContainer = new PostContainer();
+        postContainer.setBoard(boardService.get(boardKeyName));
         postContainer.setPostList(postRepository.findPage(boardId, startRow, endRow));
-        logger.info("postRepository.findPage(boardId, startRow, endRow) {}", postRepository.findPage(boardId, startRow, endRow));
         postContainer.setCurrentPageNumber(page);
         postContainer.setTotalPageNumber((page + 1) / DEFAULT_PAGE_SIZE);
 
@@ -46,7 +46,6 @@ public class PostServiceImpl implements PostService {
         int boardId = this.getBoardId(boardKeyName);
         post.setBoardId(boardId);
         postRepository.add(post);
-
     }
 
     @Override

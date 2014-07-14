@@ -36,7 +36,7 @@
     <c:choose>
         <c:when test="${currentPageNumber != 1}">
            <span>
-               <a href="/board/${boardName}/${currentPageNumber - 1}">prev</a>
+               <a href="/board/${board.keyName}/${currentPageNumber - 1}">prev</a>
            </span>
         </c:when>
     </c:choose>
@@ -48,7 +48,7 @@
     <c:choose>
         <c:when test="${postContainer.currentPageNumber != postContainer.totalPageNumber}">
             <span>
-                <a href="/board/${postContainer.boardName}/${postContainer.currentPageNumber + 1}">prev</a>
+                <a href="/board/${postContainer.board.keyName}/${postContainer.currentPageNumber + 1}">prev</a>
             </span>
         </c:when>
     </c:choose>
