@@ -8,10 +8,11 @@
 </head>
 <body>
     <h1>수정</h1>
-    <form action="/board/${boardKeyName}/post/${post.id}">
-        <input type="hidden" name="_method" value="_PUT"/>
-        <div>title : <input type="text" name="title">${post.title}</div>
-        <div>writer : <input type="text" name="writer"/>${post.writer}</div>
+    <form action="/board/${boardKeyName}/post/${post.id}" method="POST">
+        <input type="hidden" name="_method" value="PUT"/>
+        <input type="hidden" name="id" value="${post.id}"/>
+        <div>title : <input type="text" name="title" value="${post.title}"></div>
+        <div>writer : <input type="text" name="writer" value="${post.writer}"/></div>
         <div>
             <textarea name="content">${post.content}</textarea>
         </div>

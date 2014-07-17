@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>글쓰기</h1>
-    <form action="/board/${boardKeyName}/post/new" method="POST">
+    <form action="/board/${boardKeyName}/post" method="POST">
         <div>title : <input type="text" name="title"/></div>
         <div>writer : <input type="text" name="writer"/></div>
         <div>

@@ -76,8 +76,7 @@ public class PostRepositoryJdbc implements PostRepository {
                     throws SQLException {
                 PreparedStatement ps = connection.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 
-                //FIXME!!
-                ps.setInt(1, 0);
+                ps.setInt(1, post.getBoardId());
                 ps.setString(2, post.getTitle());
                 ps.setString(3, post.getWriter());
                 ps.setString(4, post.getContent());

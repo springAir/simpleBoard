@@ -10,7 +10,7 @@
 <body>
 <h1>게시판</h1>
 
-<div>총 ${postContainer.totalPageNumber}페이지 중 ${postContainer.currentPageNumber}페이지</div>
+<div>총 ${postContainer.totalPageNumber} 페이지 중 ${postContainer.currentPageNumber}페이지</div>
 
 <table>
     <thead>
@@ -25,7 +25,11 @@
     <c:forEach items="${postContainer.postList}" var="post">
         <tr>
             <td>${post.id}</td>
-            <td><a href="/board/${boardKeyName}/post/${post.id}">${post.title}</a></td>
+            <td>
+                <a href="/board/${boardKeyName}/post/${post.id}?pageNumber=${postContainer.currentPageNumber}">
+                    ${post.title}
+                </a>
+            </td>
             <td>${post.writer}</td>
             <td>${post.writeDate}</td>
         </tr>
@@ -34,7 +38,7 @@
 </table>
 <div>
     <c:choose>
-        <c:when test="${currentPageNumber != 1}">
+        <c:when test="${currentPageNumber} != 1">
            <span>
                <a href="/board/${board.keyName}/page/${currentPageNumber - 1}">prev</a>
            </span>
@@ -46,12 +50,15 @@
     </span>
 
     <c:choose>
-        <c:when test="${postContainer.currentPageNumber != postContainer.totalPageNumber}">
+        <c:when test="${postContainer.currentPageNumber} == ${postContainer.totalPageNumber}">
             <span>
-                <a href="/board/${postContainer.board.keyName}/${postContainer.currentPageNumber + 1}">prev</a>
+                <a href="/board/${postContainer.board.keyName}/${postContainer.currentPageNumber + 1}">next</a>
             </span>
         </c:when>
     </c:choose>
+</div>
+<div>
+    <a href="/board/${postContainer.board.keyName}/post/new">글쓰기</a>
 </div>
 </body>
 

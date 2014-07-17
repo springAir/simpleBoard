@@ -15,7 +15,9 @@ import java.util.Date;
 @Service
 public class PostServiceImpl implements PostService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     private final int DEFAULT_PAGE_SIZE = 20;
+
     @Autowired
     PostRepository postRepository;
 
@@ -29,6 +31,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostContainer getPostContainer(String boardKeyName, int page) {
+
         int boardId = this.getBoardId(boardKeyName);
         int startRow = (page - 1) * DEFAULT_PAGE_SIZE;
         int endRow = startRow + DEFAULT_PAGE_SIZE;
@@ -37,19 +40,19 @@ public class PostServiceImpl implements PostService {
         postContainer.setBoard(boardService.get(boardKeyName));
         postContainer.setPostList(postRepository.findPage(boardId, startRow, endRow));
         postContainer.setCurrentPageNumber(page);
-        postContainer.setTotalPageNumber((page + 1) / DEFAULT_PAGE_SIZE);
+        postContainer.setTotalPageNumber(1+((page + 1) / DEFAULT_PAGE_SIZE));
 
         return postContainer;
     }
 
-
     @Override
     public void write(String boardKeyName, Post post) {
         int boardId = this.getBoardId(boardKeyName);
-        if(post.getWriteDate() == null){
+        if(post.getWriteDate() == null)
             post.setWriteDate(new Date());
-        }
+
         post.setBoardId(boardId);
+        System.out.println("여기가 실행되요!!" + post);
         postRepository.add(post);
     }
 
