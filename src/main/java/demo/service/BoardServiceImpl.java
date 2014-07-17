@@ -5,6 +5,8 @@ import demo.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BoardServiceImpl implements BoardService{
 
@@ -13,7 +15,12 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public Board get(String boardKeyName) {
-        return boardRepository.get(boardKeyName);
+        return boardRepository.find(boardKeyName);
+    }
+
+    @Override
+    public List<Board> getList(){
+        return boardRepository.findList();
     }
 
 }

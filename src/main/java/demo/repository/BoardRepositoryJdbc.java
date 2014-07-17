@@ -10,6 +10,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
+import java.util.List;
 
 @Repository
 public class BoardRepositoryJdbc implements BoardRepository {
@@ -29,9 +30,16 @@ public class BoardRepositoryJdbc implements BoardRepository {
     }
 
     @Override
-    public Board get(String keyName) {
+    public Board find(String keyName) {
         sql = "SELECT id, key_name, name FROM BOARD WHERE KEY_NAME = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{keyName}, new BoardMapper());
+    }
+
+
+    @Override
+    public List<Board> findList() {
+        sql = "SELECT id, key_name, name FROM BOARD";
+        return jdbcTemplate.query(sql, new Object[]{}, new BoardMapper());
     }
 
     @Override
